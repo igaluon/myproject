@@ -39,7 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Place',
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Concert::find()->all(), 'place', 'place')
             ],
-            'date',
+            [
+                'attribute' => 'date',
+                'format' => 'raw',
+                'value' => 'date',
+                'label' => 'Date',
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Performance::find()->all(), 'date', 'date')
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
