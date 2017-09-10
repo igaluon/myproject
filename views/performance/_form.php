@@ -19,7 +19,7 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'place')->dropDownList(\yii\helpers\ArrayHelper::map($concert, 'place', 'place'), ['prompt' => '']) ?>
 
 
-    <?= $form->field($model, 'date')->widget(DatePicker::ClassName(), [ 'name' => 'check_issue_date']);?>
+    <?= $form->field($model, 'date')->widget(DatePicker::ClassName(), [ 'name' => 'check_issue_date','pluginOptions' => [ 'format' => 'yyyy-mm-dd', 'todayHighlight' => true ]]);?>
 
 <!--     'value' => date('dM-Y', strtotime('+2 days')), 'options' => ['placeholder' => 'Select issue date ...'], 'pluginOptions' => [ 'format' => 'yyyy/dd/mm', 'todayHighlight' => true ]-->
 

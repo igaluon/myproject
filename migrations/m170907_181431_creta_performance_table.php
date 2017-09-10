@@ -15,7 +15,7 @@ class m170907_181431_creta_performance_table extends Migration
             'id' => $this->primaryKey(),
             'artist' => $this->string(),
             'place' => $this->string(),
-            'date' => $this->string(),
+            'date' => $this->date(),
         ], $tableOptions);
 
     }
