@@ -7,8 +7,10 @@ use Yii;
 /**
  * This is the model class for table "artist".
  *
- * @property integer $id
+ * @property int $id
  * @property string $artist
+ *
+ * @property Performance[] $performances
  */
 class Artist extends \yii\db\ActiveRecord
 {
@@ -26,8 +28,7 @@ class Artist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['artist'], 'required'],
-            [['artist'], 'string', 'max' => 255],
+            [['artist'], 'string'],
         ];
     }
 
@@ -40,5 +41,13 @@ class Artist extends \yii\db\ActiveRecord
             'id' => 'ID',
             'artist' => 'Artist',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPerformances()
+    {
+        return $this->hasMany(Performance::className(), ['artist_id' => 'id']);
     }
 }

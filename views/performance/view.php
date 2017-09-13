@@ -28,9 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'artist',
-            'place',
+
+            [                                                  // name свойство зависимой модели owner
+                'label' => 'Artist',
+                'value' => $model->artist->artist,
+            ],
+            [                                                  // name свойство зависимой модели owner
+                'label' => 'Artist',
+                'value' => $model->concert->place,
+            ],
             'date',
         ],
     ]) ?>

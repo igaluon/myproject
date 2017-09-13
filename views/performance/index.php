@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PerformanceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,24 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             [
-                'attribute' => 'artist',
-                'format' => 'raw',
-                'value' => 'artist',
+                'attribute' => 'artist_id',
                 'label' => 'Artist',
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Artist::find()->all(), 'artist', 'artist')
+                'value' => function ($model) {
+                        return $model->artist->artist;
+                    },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Artist::find()->all(), 'id', 'artist')
             ],
             [
-                'attribute' => 'place',
-                'format' => 'raw',
-                'value' => 'place',
+                'attribute' => 'place_id',
                 'label' => 'Place',
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Concert::find()->all(), 'place', 'place')
+                'value' => function ($model) {
+                        return $model->concert->place;
+                    },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Concert::find()->all(), 'id', 'place')
             ],
             [
                 'attribute' => 'date',
+                'label' => 'Date',
                 'format' => 'raw',
                 'value' => 'date',
-                'label' => 'Date',
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Performance::find()->all(), 'date', 'date')
             ],
 

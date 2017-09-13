@@ -2,8 +2,14 @@
 
 use yii\db\Migration;
 
-class m170907_180759_creta_artist_table extends Migration
+/**
+ * Handles the creation of table `artist`.
+ */
+class m170912_170608_create_artist_table extends Migration
 {
+    /**
+     * @inheritdoc
+     */
     public function up()
     {
         $tableOptions = null;
@@ -13,16 +19,20 @@ class m170907_180759_creta_artist_table extends Migration
 
         $this->createTable('artist', [
             'id' => $this->primaryKey(),
-            'artist' => $this->string()->notNull(),
+            'artist' => $this->text(255),
         ], $tableOptions);
+
+
 
     }
 
+    /**
+     * @return bool
+     */
     public function down()
     {
         $this->dropTable('artist');
 
         return false;
     }
-
 }

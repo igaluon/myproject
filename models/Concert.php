@@ -7,8 +7,10 @@ use Yii;
 /**
  * This is the model class for table "concert".
  *
- * @property integer $id
+ * @property int $id
  * @property string $place
+ *
+ * @property Performance[] $performances
  */
 class Concert extends \yii\db\ActiveRecord
 {
@@ -26,7 +28,7 @@ class Concert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place'], 'string', 'max' => 255],
+            [['place'], 'string'],
         ];
     }
 
@@ -39,5 +41,13 @@ class Concert extends \yii\db\ActiveRecord
             'id' => 'ID',
             'place' => 'Place',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPerformances()
+    {
+        return $this->hasMany(Performance::className(), ['concert_id' => 'id']);
     }
 }

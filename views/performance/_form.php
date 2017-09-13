@@ -14,10 +14,9 @@ use kartik\date\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'artist')->dropDownList(\yii\helpers\ArrayHelper::map($artist, 'artist', 'artist'), ['prompt' => '']) ?>
+    <?= $form->field($model, 'artist_id')->dropDownList(\yii\helpers\ArrayHelper::map($artist, 'id', 'artist'), ['prompt' => '--']) ?>
 
-    <?= $form->field($model, 'place')->dropDownList(\yii\helpers\ArrayHelper::map($concert, 'place', 'place'), ['prompt' => '']) ?>
-
+    <?= $form->field($model, 'place_id')->dropDownList(\yii\helpers\ArrayHelper::map($concert, 'id', 'place'), ['prompt' => '--']) ?>
 
     <?= $form->field($model, 'date')->widget(DatePicker::ClassName(), [ 'name' => 'check_issue_date','pluginOptions' => [ 'format' => 'yyyy-mm-dd', 'todayHighlight' => true ]]);?>
 

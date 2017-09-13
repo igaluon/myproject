@@ -7,10 +7,13 @@ use Yii;
 /**
  * This is the model class for table "performance".
  *
- * @property integer $id
- * @property string $artist
- * @property string $place
+ * @property int $id
+ * @property int $artist_id
+ * @property int $place_id
  * @property string $date
+ *
+ * @property Artist $artist0
+ * @property Concert $concert
  */
 class Performance extends \yii\db\ActiveRecord
 {
@@ -28,7 +31,11 @@ class Performance extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['artist', 'place', 'date'], 'string', 'max' => 255],
+            [['artist_id', 'place_id'], 'required'],
+            [['artist_id', 'place_id'], 'integer'],
+            [['date'], 'date', 'format' => 'yyyy-mm-dd'],
+            [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
+            [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Concert::className(), 'targetAttribute' => ['place_id' => 'id']],
         ];
     }
 
@@ -39,9 +46,25 @@ class Performance extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'artist' => 'Artist',
-            'place' => 'Place',
+            'artist_id' => 'Artist',
+            'place_id' => 'Concert',
             'date' => 'Date',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArtist()
+    {
+        return $this->hasOne(Artist::className(), ['id' => 'artist_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConcert()
+    {
+        return $this->hasOne(Concert::className(), ['id' => 'place_id']);
     }
 }
