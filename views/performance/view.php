@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->artist->artist,
             ],
             [                                                  // name свойство зависимой модели owner
-                'label' => 'Artist',
+                'label' => 'Place',
                 'value' => $model->concert->place,
             ],
             'date',
